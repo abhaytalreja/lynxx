@@ -1,4 +1,22 @@
 import colors from 'vuetify/es5/util/colors'
+import axios from 'axios'
+
+const routes = () => {
+  return axios
+    .get('https://portal-tb.lynxx.co/api-test/image/list')
+    .then((res) => {
+      const routes = [{ route: '/error', payload: { item: null } }]
+      routes.push('/error')
+      for (const key in res.data) {
+        const item = res.data[key]
+        routes.push({
+          route: '/' + item.name,
+          payload: { item },
+        })
+      }
+      return routes
+    })
+}
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
@@ -14,6 +32,12 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
+
+  generate: {
+    fallback: true,
+    routes,
+    concurrency: 25,
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
