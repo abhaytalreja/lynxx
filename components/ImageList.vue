@@ -1,6 +1,6 @@
 <template>
   <v-row dense>
-    <v-col v-for="item in items" :key="item.name" :cols="6">
+    <v-col v-for="item in items" :key="item.name" cols="12" sm="6">
       <ImageCard :item="item" />
     </v-col>
   </v-row>
