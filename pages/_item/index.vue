@@ -1,21 +1,27 @@
 <template>
   <div>
-    <v-btn color="blue-grey" class="ma-2 white--text mb-4" nuxt href="/">
-      Go back home
-      <v-icon right>mdi-home</v-icon>
-    </v-btn>
+    <TheHeader />
     <ImageCard :item="item" :full-size="fullSize" />
   </div>
 </template>
 <script>
 export default {
+  asyncData({ store, params }) {
+    if (store.state.items) {
+      const items = store.getters.getItems
+      const item = items.find((item) => item.name === params.item)
+      return { item }
+    } else {
+      return store.dispatch('getItems').then((items) => {
+        const item = items.find((item) => item.name === params.item)
+        return {
+          item,
+        }
+      })
+    }
+  },
   data() {
     return {
-      item: {
-        title: 'Pre-fab homes',
-        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-        flex: 12,
-      },
       fullSize: true,
     }
   },

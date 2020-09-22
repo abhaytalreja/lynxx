@@ -56,7 +56,7 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
-          favorite: colors.red.lighten1,
+          favorite: colors.yellow.darken2,
         },
       },
     },
