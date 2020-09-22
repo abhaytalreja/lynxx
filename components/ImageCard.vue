@@ -3,7 +3,7 @@
     <v-card class="ma-2">
       <nuxt-link :to="'/' + item.name" class="image-preview">
         <v-img
-          :lazy-src="'https://portal-tb.lynxx.co/api-test/image/' + item.name"
+          :src="'https://portal-tb.lynxx.co/api-test/image/' + item.name"
           class="white--text align-end"
           gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
           :height="fullSize ? '720px' : '350px'"
